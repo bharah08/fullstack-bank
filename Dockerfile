@@ -1,7 +1,10 @@
 FROM node:18-alpine
 WORKDIR /app
 COPY . .
-COPY package.json /app
+RUN cd /app/frontend
 RUN npm install
-COPY . .
-CMD ["npm,"start"]
+RUN cd ../..
+RUN cd /app/backend
+RUN npm install
+RUN cd ../..
+CMD ["npm","start"]
